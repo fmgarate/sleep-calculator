@@ -22,17 +22,14 @@ export default {
   },
   data: function() {
     return {
-      // setupMode: true,
       config: {setup: true}
     }
   },
   methods: {
     calculate: function(config) {
-      // this.setupMode = false
       this.config = { ...config, setup: false }
     },
     reset: function() {
-      // this.setupMode = true
       this.config = {setup: true}
     }
   }
