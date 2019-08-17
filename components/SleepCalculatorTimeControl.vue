@@ -1,8 +1,10 @@
 <template>
   <div class="time-control">
-    <div class="time-item"
-      v-for="item in items" :key="item"
-      v-bind:class="{ 'bg-blue-500 text-white': (item == selected) }"
+    <div
+      v-for="item in items"
+      :key="item"
+      class="time-item"
+      :class="{ 'bg-blue-500 text-white': (item == selected) }"
     >
       <button class="w-full" @click="setValue(item)">
         {{ item }}
@@ -13,14 +15,14 @@
 
 <script>
 export default {
-  name: "TimeControl",
-  props: [
-    "items",
-    "selected"
-  ],
+  name: 'TimeControl',
+  props: {
+    items: { type: Array, required: true },
+    selected: { type: Number, required: true }
+  },
   methods: {
-    setValue: function(value) {
-      this.$emit("set-value", value)
+    setValue (value) {
+      this.$emit('set-value', value)
     }
   }
 }

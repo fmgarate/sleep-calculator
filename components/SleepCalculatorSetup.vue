@@ -4,14 +4,18 @@
       IF I WANT TO WAKE UP AT...
     </h2>
     <div class="setup-controls flex">
-      <time-control class="w-1/2"
-        v-bind:items="hours"
-        v-bind:selected="hh"
-        v-on:set-value="setHour" />
-      <time-control class="w-1/2"
-        v-bind:items="minutes"
-        v-bind:selected="mm"
-        v-on:set-value="setMinute" />
+      <time-control
+        class="w-1/2"
+        :items="hours"
+        :selected="hh"
+        @set-value="setHour"
+      />
+      <time-control
+        class="w-1/2"
+        :items="minutes"
+        :selected="mm"
+        @set-value="setMinute"
+      />
     </div>
     <div class="calc-actions py-2">
       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" @click="finish('go-to-bed')">
@@ -30,14 +34,14 @@
 </template>
 
 <script>
-import TimeControl from "~/components/SleepCalculatorTimeControl.vue"
+import TimeControl from '~/components/SleepCalculatorTimeControl.vue'
 
 export default {
-  name: "CalculatorSetup",
+  name: 'CalculatorSetup',
   components: {
     TimeControl
   },
-  data: function () {
+  data () {
     return {
       hours: this._.range(0, 24),
       minutes: this._.range(0, 60, 5),
@@ -46,19 +50,19 @@ export default {
     }
   },
   methods: {
-    finish: function(mode) {
-      this.$emit("setup-completed", {
+    finish (mode) {
+      this.$emit('setup-completed', {
         mode,
         hh: this.hh,
         mm: this.mm
       })
     },
-    setHour: function(value) {
+    setHour (value) {
       this.hh = value
     },
-    setMinute: function(value) {
+    setMinute (value) {
       this.mm = value
-    },
+    }
   }
 }
 </script>
