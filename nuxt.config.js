@@ -29,14 +29,16 @@ export default {
   */
   plugins: [
     '~/plugins/lodash',
-    '~/plugins/moment',
+    '~/plugins/moment'
   ],
   /*
   ** Nuxt.js dev-modules
   */
   devModules: [
+    // Doc: https://github.com/nuxt-community/eslint-module
+    '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss',
+    '@nuxtjs/tailwindcss'
   ],
   /*
   ** Nuxt.js modules
@@ -45,7 +47,7 @@ export default {
   ],
   server: {
     port: 3000,
-    host: '0.0.0.0',
+    host: '0.0.0.0'
   },
   /*
   ** Build configuration
@@ -54,7 +56,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
+    extend (config, ctx) {
     }
   }
 }
