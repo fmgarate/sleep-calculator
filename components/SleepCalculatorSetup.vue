@@ -32,8 +32,8 @@ export default {
   },
   data () {
     return {
-      hours: this._.range(0, 24),
-      minutes: this._.range(0, 60, 5),
+      hours: [...Array(24).keys()],
+      minutes: [...Array(12).keys()].map(k => k * 5),
       hh: 0,
       mm: 0
     }
