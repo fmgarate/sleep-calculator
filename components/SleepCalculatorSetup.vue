@@ -1,6 +1,6 @@
 <template>
   <div class="calculator-setup">
-    <div class="setup-controls flex">
+    <div class="setup-controls flex my-2">
       <time-control
         class="w-1/2"
         :items="hours"
@@ -56,8 +56,7 @@ export default {
 </script>
 
 <style scoped>
-  .calculator-setup,
-  .calculator-setup .setup-controls {
-    margin: 10px 0 15px;
+  .calculator-setup {
+    @apply mx-auto max-w-xs
   }
 </style>

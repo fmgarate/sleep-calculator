@@ -1,5 +1,5 @@
 <template>
-  <div class="sleep-calculator mx-auto max-w-xs">
+  <div class="sleep-calculator">
     <calculator-setup
       v-if="config.setup"
       @setup-completed="calculate"

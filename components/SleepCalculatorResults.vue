@@ -55,6 +55,9 @@ export default {
 </script>
 
 <style scoped>
+  .calculator-results {
+    @apply mx-auto max-w-md
+  }
   .btn-reset {
     @apply bg-red-500 text-white font-bold py-2 px-4 rounded-full
   }
