@@ -1,21 +1,15 @@
 <template>
   <div class="calculator-setup">
-    <div class="setup-controls flex my-2">
+    <div class="time-control-wrapper">
       <time-control
-        class="w-1/2"
-        :items="hours"
-        :selected="hh"
-        @set-value="setHour"
-      />
-      <time-control
-        class="w-1/2"
-        :items="minutes"
-        :selected="mm"
-        @set-value="setMinute"
+        :hh="time.hh"
+        :mm="time.mm"
+        :am="time.am"
+        @set-time="setTime"
       />
     </div>
-    <div class="calc-actions py-2">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" @click="finish()">
+    <div class="actions">
+      <button class="btn-finish" @click="finish()">
         When should I goto Bed
       </button>
     </div>
@@ -32,24 +26,19 @@ export default {
   },
   data () {
     return {
-      hours: [...Array(24).keys()],
-      minutes: [...Array(12).keys()].map(k => k * 5),
-      hh: 0,
-      mm: 0
+      time: {
+        hh: 7,
+        mm: 30,
+        am: 'AM'
+      }
     }
   },
   methods: {
     finish () {
-      this.$emit('setup-completed', {
-        hh: this.hh,
-        mm: this.mm
-      })
+      this.$emit('setup-completed', this.time)
     },
-    setHour (value) {
-      this.hh = value
-    },
-    setMinute (value) {
-      this.mm = value
+    setTime (value) {
+      this.time = { ...this.time, ...value }
     }
   }
 }
@@ -58,5 +47,16 @@ export default {
 <style scoped>
   .calculator-setup {
     @apply mx-auto max-w-xs
+  }
+  .time-control-wrapper {
+    @apply bg-white px-4 py-1 rounded;
+    margin-bottom: 15px
+  }
+  .actions {
+    @apply py-2
+  }
+  .btn-finish {
+    @apply bg-white rounded-full font-bold py-2 px-6;
+    color: #2A8CF8
   }
 </style>

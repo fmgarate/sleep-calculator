@@ -29,10 +29,8 @@ export default {
   },
   computed: {
     time () {
-      return this.$moment({
-        hour: this.config.hh,
-        minute: this.config.mm
-      })
+      const { hh, mm, am } = this.config.time
+      return this.$moment(`${hh}:${mm} ${am}`, 'h:m A')
     },
     results () {
       let time = this.$moment(this.time).subtract({ minute: 15 })
@@ -59,13 +57,11 @@ export default {
     @apply mx-auto max-w-md
   }
   .btn-reset {
-    @apply bg-red-500 text-white font-bold py-2 px-4 rounded-full
-  }
-  .btn-reset:hover {
-    @apply bg-red-700
+    @apply bg-white rounded-full font-bold py-2 px-6;
+    color: #2A8CF8
   }
   .title {
-    @apply font-bold py-3
+    @apply text-white font-bold py-3
   }
   .info {
     @apply py-2
@@ -74,6 +70,6 @@ export default {
     @apply flex flex-wrap justify-center py-5
   }
   .time-item {
-    @apply border border-solid border-blue-500 rounded px-3 py-1 my-2 mx-1
+    @apply bg-white px-3 py-1 my-2 mx-1
   }
 </style>

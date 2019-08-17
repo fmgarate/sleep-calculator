@@ -28,8 +28,8 @@ export default {
     }
   },
   methods: {
-    calculate (config) {
-      this.config = { ...config, setup: false }
+    calculate (time) {
+      this.config = { time, setup: false }
     },
     reset () {
       this.config = { setup: true }
