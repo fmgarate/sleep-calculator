@@ -3,16 +3,16 @@
     <h2 class="font-bold py-2">
       GO TO BED TIMES
     </h2>
+    <div class="flex flex-wrap justify-center py-5">
+      <div v-for="(item, index) in results" :key="index" class="border border-solid border-blue-500 rounded mx-1 my-2 px-1">
+        {{ item | moment("HH:mm") }}
+      </div>
+    </div>
     <div class="info">
       <p>
         It takes the average human about 15 minutes to fall asleep. <br>
         To wake up refreshed at {{ time | moment("HH:mm") }}, you should go to bed at one of the following times:
       </p>
-    </div>
-    <div class="flex flex-wrap justify-center py-5">
-      <div v-for="(item, index) in results" :key="index" class="border border-solid border-blue-500 rounded mx-1 my-2 px-1">
-        {{ item | moment("HH:mm") }}
-      </div>
     </div>
   </div>
 </template>

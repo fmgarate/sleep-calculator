@@ -1,8 +1,5 @@
 <template>
   <div class="calculator-setup">
-    <h2 class="calc-title py-2">
-      IF I WANT TO WAKE UP AT...
-    </h2>
     <div class="setup-controls flex">
       <time-control
         class="w-1/2"
@@ -18,16 +15,8 @@
       />
     </div>
     <div class="calc-actions py-2">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" @click="finish('go-to-bed')">
-        WHEN SHOULD I GO TO BED?
-      </button>
-    </div>
-    <h2 class="calc-title py-2">
-      IF I GO TO SLEEP NOW...
-    </h2>
-    <div class="calc-actions py-2">
-      <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4" @click="finish('wake-up')">
-        WHEN SHOULD I GET UP?
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4" @click="finish()">
+        When should I goto Bed
       </button>
     </div>
   </div>
@@ -50,9 +39,8 @@ export default {
     }
   },
   methods: {
-    finish (mode) {
+    finish () {
       this.$emit('setup-completed', {
-        mode,
         hh: this.hh,
         mm: this.mm
       })

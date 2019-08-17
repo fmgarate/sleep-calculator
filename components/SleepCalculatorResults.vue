@@ -1,47 +1,31 @@
 <template>
   <div class="calculator-results">
-    <go-to-bed-results
-      v-if="config.mode === 'go-to-bed'"
-      :time="time"
-    />
-    <wake-up-results
-      v-else
-      :time="time"
-    />
-    <div class="info text-xs py-2">
-      <p>
-        If you wake up at one of these times, you'll rise in between 90-minute sleep cycles.
-        A good night's sleep consists of 5-6 complete sleep cycles.
-      </p>
-    </div>
     <div class="py-2">
       <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4" @click="reset">
-        CALCULATE AGAIN
+        Calculate Again
       </button>
     </div>
+    <go-to-bed-results :time="time" />
   </div>
 </template>
 
 <script>
 import GoToBedResults from '~/components/SleepCalculatorGoToBedResults.vue'
-import WakeUpResults from '~/components/SleepCalculatorWakeUpResults.vue'
 
 export default {
   name: 'CalculatorResults',
   components: {
-    GoToBedResults,
-    WakeUpResults
+    GoToBedResults
   },
   props: {
     config: { type: Object, required: true }
   },
   computed: {
     time () {
-      if (this.config.mode === 'go-to-bed') {
-        return this.$moment({ hour: this.config.hh, minute: this.config.mm })
-      } else {
-        return this.$moment()
-      }
+      return this.$moment({
+        hour: this.config.hh,
+        minute: this.config.mm
+      })
     }
   },
   methods: {
