@@ -61,15 +61,17 @@ export default {
     color: #2A8CF8
   }
   .title {
-    @apply text-white font-bold py-3
+    @apply text-white font-bold
   }
+  .actions,
+  .title,
   .info {
-    @apply py-2
+    @apply py-3
   }
   .time-list {
     @apply flex flex-wrap justify-center py-5
   }
   .time-item {
-    @apply bg-white px-3 py-1 my-2 mx-1
+    @apply w-1/4 bg-white px-3 py-1 my-1 mx-1
   }
 </style>

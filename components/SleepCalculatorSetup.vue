@@ -49,11 +49,11 @@ export default {
     @apply mx-auto max-w-xs
   }
   .time-control-wrapper {
-    @apply bg-white px-4 py-1 rounded;
-    margin-bottom: 15px
+    @apply bg-white py-1 px-3 rounded
   }
+  .time-control-wrapper,
   .actions {
-    @apply py-2
+    @apply my-4
   }
   .btn-finish {
     @apply bg-white rounded-full font-bold py-2 px-6;

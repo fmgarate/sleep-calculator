@@ -90,22 +90,21 @@ export default {
     position: relative;
   }
   .time-highlight {
+    @apply z-0;
     position: absolute;
     border: 2px solid #563FB8;
     width: 100%;
     height: 32px;
     top: 32px;
     border-radius: 15px;
-    z-index: 0;
   }
   .time-row {
     @apply flex;
   }
   .time-col {
-    @apply w-1/3;
+    @apply w-1/3 z-10;
     height: 96px;
     overflow-y: scroll;
-    z-index: 1;
   }
   .time-col::-webkit-scrollbar {
     width: 0 !important
