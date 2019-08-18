@@ -23,6 +23,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/css/layouts.css',
     '~/assets/fonts/gilroy.css'
   ],
   /*
@@ -53,6 +54,9 @@ export default {
   ** Build configuration
   */
   build: {
+    splitChunks: {
+      layouts: true
+    },
     /*
     ** You can extend webpack config here
     */
