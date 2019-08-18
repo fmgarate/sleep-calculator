@@ -10,18 +10,20 @@
     </h2>
     <div class="time-list">
       <div v-for="(item, index) in results" :key="index" class="time-item">
-        <strong>{{ item | moment("h:mm") }}</strong>
-        <span>{{ item | moment("A") }}</span>
+        <strong>{{ item.format("h:mm") }}</strong>
+        <span>{{ item.format("A") }}</span>
       </div>
     </div>
     <div class="info">
       It takes the average human about 15 minutes to fall asleep. <br>
-      To wake up refreshed at {{ time | moment("h:mm A") }}, you should go to bed at one of the above times
+      To wake up refreshed at {{ time.format("h:mm A") }}, you should go to bed at one of the above times
     </div>
   </div>
 </template>
 
 <script>
+import dayjs from 'dayjs'
+
 export default {
   name: 'CalculatorResults',
   props: {
@@ -30,14 +32,26 @@ export default {
   computed: {
     time () {
       const { hh, mm, am } = this.config.time
-      return this.$moment(`${hh}:${mm} ${am}`, 'h:m A')
+      let time = dayjs()
+        .hour(hh)
+        .minute(mm)
+
+      if (hh === 12) {
+        time = time.hour(0)
+      }
+
+      if (am !== 'AM') {
+        time = time.add(12, 'hour')
+      }
+
+      return time
     },
     results () {
-      let time = this.$moment(this.time).subtract({ minute: 15 })
+      let time = dayjs(this.time).subtract(15, 'minute')
       const times = []
 
       for (let i = 0; i < 6; i++) {
-        time = this.$moment(time).subtract({ minute: 90 })
+        time = time.subtract(90, 'minute')
         times.push(time)
       }
 
