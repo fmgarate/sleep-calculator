@@ -1,5 +1,5 @@
 <template>
-  <div class="sleep-calculator mx-auto max-w-xs">
+  <div class="sleep-calculator">
     <calculator-setup
       v-if="config.setup"
       @setup-completed="calculate"
@@ -28,8 +28,8 @@ export default {
     }
   },
   methods: {
-    calculate (config) {
-      this.config = { ...config, setup: false }
+    calculate (time) {
+      this.config = { time, setup: false }
     },
     reset () {
       this.config = { setup: true }

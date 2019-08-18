@@ -23,12 +23,13 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/css/layouts.css',
+    '~/assets/fonts/gilroy.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/lodash',
     '~/plugins/moment'
   ],
   /*
@@ -53,6 +54,9 @@ export default {
   ** Build configuration
   */
   build: {
+    splitChunks: {
+      layouts: true
+    },
     /*
     ** You can extend webpack config here
     */

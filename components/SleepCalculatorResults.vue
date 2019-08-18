@@ -1,47 +1,47 @@
 <template>
   <div class="calculator-results">
-    <go-to-bed-results
-      v-if="config.mode === 'go-to-bed'"
-      :time="time"
-    />
-    <wake-up-results
-      v-else
-      :time="time"
-    />
-    <div class="info text-xs py-2">
-      <p>
-        If you wake up at one of these times, you'll rise in between 90-minute sleep cycles.
-        A good night's sleep consists of 5-6 complete sleep cycles.
-      </p>
-    </div>
-    <div class="py-2">
-      <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4" @click="reset">
-        CALCULATE AGAIN
+    <div class="actions">
+      <button class="btn-reset" @click="reset">
+        Calculate Again
       </button>
+    </div>
+    <h2 class="title">
+      GO TO BED TIMES
+    </h2>
+    <div class="time-list">
+      <div v-for="(item, index) in results" :key="index" class="time-item">
+        <strong>{{ item | moment("h:mm") }}</strong>
+        <span>{{ item | moment("A") }}</span>
+      </div>
+    </div>
+    <div class="info">
+      It takes the average human about 15 minutes to fall asleep. <br>
+      To wake up refreshed at {{ time | moment("h:mm A") }}, you should go to bed at one of the above times
     </div>
   </div>
 </template>
 
 <script>
-import GoToBedResults from '~/components/SleepCalculatorGoToBedResults.vue'
-import WakeUpResults from '~/components/SleepCalculatorWakeUpResults.vue'
-
 export default {
   name: 'CalculatorResults',
-  components: {
-    GoToBedResults,
-    WakeUpResults
-  },
   props: {
     config: { type: Object, required: true }
   },
   computed: {
     time () {
-      if (this.config.mode === 'go-to-bed') {
-        return this.$moment({ hour: this.config.hh, minute: this.config.mm })
-      } else {
-        return this.$moment()
+      const { hh, mm, am } = this.config.time
+      return this.$moment(`${hh}:${mm} ${am}`, 'h:m A')
+    },
+    results () {
+      let time = this.$moment(this.time).subtract({ minute: 15 })
+      const times = []
+
+      for (let i = 0; i < 6; i++) {
+        time = this.$moment(time).subtract({ minute: 90 })
+        times.push(time)
       }
+
+      return times.reverse()
     }
   },
   methods: {
@@ -51,3 +51,27 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .calculator-results {
+    @apply mx-auto max-w-md
+  }
+  .btn-reset {
+    @apply bg-white rounded-full font-bold py-2 px-6;
+    color: #2A8CF8
+  }
+  .title {
+    @apply text-white font-bold
+  }
+  .actions,
+  .title,
+  .info {
+    @apply py-3
+  }
+  .time-list {
+    @apply flex flex-wrap justify-center py-5
+  }
+  .time-item {
+    @apply w-1/4 bg-white px-3 py-1 my-1 mx-1
+  }
+</style>
